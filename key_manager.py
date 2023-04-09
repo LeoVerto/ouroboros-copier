@@ -1,8 +1,9 @@
 import re
 import os
 import pathlib
+import json
 
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
 
 
 @dataclass(unsafe_hash=True)
@@ -20,6 +21,10 @@ class Circle:
         if other.__class__ is not self.__class__:
             return NotImplemented
         return (self.label, self.key) == (other.label, other.key)
+
+    @property
+    def __dict__(self):
+        return asdict(self)
 
 
 def load_command_file(file):
@@ -78,6 +83,11 @@ def get_unjoined(circles):
             unjoined.append(circle)
     return unjoined
 
+def write_circles(circles):
+    circle_dicts = [c.__dict__ for c in circles]
+
+    with open("circles/circles.json", "w") as f:
+        f.write(json.dumps(circle_dicts, indent=2))
 
 def load_and_get_unjoined_circles():
     circles = set()
@@ -88,10 +98,12 @@ def load_and_get_unjoined_circles():
         circles |= load_key_file(path)
 
     circles = set_joined(circles)
+
     print(f"Loaded {len(circles)} unique circles.")
+    write_circles(circles)
     unjoined = get_unjoined(circles)
     print(f"Found {len(unjoined)} unjoined circles.")
-    print(unjoined)
+    #print(unjoined)
     return unjoined
 
 

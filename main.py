@@ -14,9 +14,10 @@ def paste_commands():
 
     for circle in unjoined:
         cmd = generate_command(circle)
-        pyperclip.copy(cmd)
-        print(".", end="", flush=True)
-        time.sleep(0.8)
+        #pyperclip.copy(cmd)
+        #print(".", end="", flush=True)
+        #time.sleep(0.8)
+        print(cmd)
 
 
 time.sleep(2)
