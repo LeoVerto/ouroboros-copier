@@ -83,11 +83,13 @@ def get_unjoined(circles):
             unjoined.append(circle)
     return unjoined
 
+
 def write_circles(circles):
     circle_dicts = [c.__dict__ for c in circles]
 
     with open("circles/circles.json", "w") as f:
         f.write(json.dumps(circle_dicts, indent=2))
+
 
 def load_and_get_unjoined_circles():
     circles = set()
@@ -103,7 +105,7 @@ def load_and_get_unjoined_circles():
     write_circles(circles)
     unjoined = get_unjoined(circles)
     print(f"Found {len(unjoined)} unjoined circles.")
-    #print(unjoined)
+    # print(unjoined)
     return unjoined
 
 
