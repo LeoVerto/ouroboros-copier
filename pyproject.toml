@@ -1,0 +1,14 @@
+[tool.pdm]
+
+[project]
+name = ""
+version = ""
+description = ""
+authors = [
+    {name = "", email = ""},
+]
+dependencies = [
+    "pyperclip>=1.8.2",
+]
+requires-python = ">=3.10"
+license = {text = "MIT"}
